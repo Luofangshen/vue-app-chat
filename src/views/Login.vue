@@ -21,6 +21,8 @@
 
 <script>
 import {Toast} from 'mint-ui'
+import {mapState} from 'vuex'
+import Cookies from 'js-cookie'
 export default {
   data () {
     return {
@@ -28,11 +30,32 @@ export default {
       password: ''
     }
   },
+  computed: {
+    ...mapState(['user', 'msg'])
+  },
+  watch: {
+    user () {
+      let userid = Cookies.get('userid')
+      if (userid) {
+        this.$router.replace('/')
+      }
+    }
+  },
   methods: {
     login () {
       let {username, password} = this
       if (username.trim() && password.trim()) {
-        console.log(username, password)
+        let user = {username, password}
+        let cb = () => {
+          if (this.msg) {
+            Toast({
+              message: this.msg,
+              position: 'middle',
+              duration: 800
+            })
+          }
+        }
+        this.$store.dispatch('login', {user, cb})
       } else {
         Toast({
           message: '用户名或者密码不能为空',
@@ -43,6 +66,12 @@ export default {
     },
     toRegister () {
       this.$router.replace('/register')
+    }
+  },
+  mounted () {
+    let userid = Cookies.get('userid')
+    if (userid) {
+      this.$router.replace('/')
     }
   }
 }

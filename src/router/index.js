@@ -4,6 +4,10 @@ import VueRouter from 'vue-router'
 import Login from '../views/Login'
 import Register from '../views/Register'
 import Main from '../views/main/Main'
+import UserInfo from '../views/main/UserInfo'
+import UserList from '../views/main/Userlist'
+import Message from '../views/main/Message'
+import Personal from '../views/main/Personal'
 
 Vue.use(VueRouter)
 
@@ -13,7 +17,34 @@ export default new VueRouter({
     {path: '/register', component: Register},
     {
       path: '/',
-      component: Main
+      component: Main,
+      children: [
+        {
+          path: 'userinfo',
+          component: UserInfo
+        },
+        {
+          path: 'message',
+          component: Message,
+          meta: {
+            isShow: true
+          }
+        },
+        {
+          path: 'personal',
+          component: Personal,
+          meta: {
+            isShow: true
+          }
+        },
+        {
+          path: 'userlist',
+          component: UserList,
+          meta: {
+            isShow: true
+          }
+        }
+      ]
     }
   ]
 })

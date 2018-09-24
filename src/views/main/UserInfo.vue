@@ -36,6 +36,8 @@ export default {
       let userInfo = {header: this.header, info: this.info}
       this.$store.dispatch('update', userInfo)
       this.$nextTick(function () {
+        this.$store.dispatch('getChat')
+        this.$store.dispatch('getUserList')
         this.$router.replace('/message')
       })
     }

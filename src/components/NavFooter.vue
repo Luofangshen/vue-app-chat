@@ -4,6 +4,7 @@
     <div :class="{active: $route.path === '/message'}" @click="$router.push('/message')">
       <i class='iconfont icon-weixin3' v-if="$route.path === '/message'"></i>
       <i class='iconfont icon-weixin2' v-else></i>
+      <Badge v-if="unReadNum" :text="unReadNum" class="badge"></Badge>
     </div>
     <div :class="{active: $route.path === '/userlist'}" @click="$router.push('/userlist')">
       <i class='iconfont icon-group_fill' v-if="$route.path === '/userlist'"></i>
@@ -20,8 +21,22 @@
 </template>
 
 <script>
-export default {
+import { Badge } from 'vux'
+import {mapState} from 'vuex'
 
+export default {
+  computed: {
+    ...mapState(['chat', 'user']),
+    unReadNum () {
+      let arr = this.chat.chatMsgs.filter(chatMsg => chatMsg.from !== this.user._id)
+      return arr.reduce((total, chatMsg) => {
+        return total + (chatMsg.read ? 0 : 1)
+      }, 0)
+    }
+  },
+  components: {
+    Badge
+  }
 }
 </script>
 
@@ -35,6 +50,11 @@ export default {
       bottom: 0;
       display: flex;
       background-color: white;
+      .badge{
+        position: absolute;
+        left: 3rem;
+        top: 0;
+      }
       &:before{
        .top-1px();
       }

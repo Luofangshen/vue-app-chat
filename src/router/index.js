@@ -8,6 +8,7 @@ import UserInfo from '../views/main/UserInfo'
 import UserList from '../views/main/Userlist'
 import Message from '../views/main/Message'
 import Personal from '../views/main/Personal'
+import Chat from '../views/main/Chat'
 
 Vue.use(VueRouter)
 
@@ -43,6 +44,11 @@ export default new VueRouter({
           meta: {
             isShow: true
           }
+        },
+        {
+          path: '/chat/:id',
+          component: Chat,
+          props: (route) => ({id: route.params.id})
         }
       ]
     }

@@ -3,5 +3,8 @@
  */
 export default {
   user: {},
-  msg: ''
+  msg: '',
+  userList: [],
+  chat: {users: {}, chatMsgs: []},
+  read: 0
 }

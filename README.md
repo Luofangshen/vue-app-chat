@@ -4,7 +4,7 @@
     技术选型
 
         前后端分离项目
-        前端主要使用 npm + webpack + Vue 全家桶 + mint mobile
+        前端主要使用 npm + webpack + Vue 全家桶 + mint mobile + vux-ui
         后端主要使用 node + express + mongodb 快速搭建的后台应用
         另外还使用了 PubSub   js-cookie socket-io  等库
 

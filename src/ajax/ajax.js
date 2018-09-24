@@ -11,7 +11,6 @@ function ajax (url, data = {}, methods = 'GET') {
         dataStr = dataStr.slice(0, -1)
         url += '?' + dataStr
       }
-      console.log(url)
       axios.get(url)
         .then(res => {
           resolve(res.data)

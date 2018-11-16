@@ -10,7 +10,7 @@
 
     运行
     1. 需先保证运行了mongodb
-    2. 先运行 react-chat-serve (在另一个项目)
+    2. 先运行 react-chat-serve (先运行后台服务端，在仓库另一个项目，地址是： https://github.com/Luofangshen/react-app-serve)
     3. 接着直接运行本项目
 
     接口文档
